@@ -1,7 +1,7 @@
 """
 Universidad del Valle de Guatemala
 Seccion 10
-Ing. Tomas Galvez
+Ing. Cristian Castro
 Mario Perdomo  18029
 main.py
 Proposito: GUi del buscador de imaganes usando NN (Nearest Neighbour)
@@ -21,13 +21,11 @@ class Main:
         self.root = tkinter.Tk()
         self.resultImages = []
         self.imagesPath = os.getcwd()
-        print(self.imagesPath)
         self.imagesPath = os.path.join(self.imagesPath,"DB")
         #Initiating the model for NN as model
         self.model = NearestNeighbors.NearestNeighborsModel()
         #The model was trained at this point to get the most at the DB
         self.model.trainModel()
-        print(self.imagesPath)
 
     def mainWindow(self):
         #Size of the window for the GUI
@@ -50,8 +48,7 @@ class Main:
         for row_n in range(0, len(results), col_num):
             for column_n in range(col_num):
                 image_path = results[row_n+column_n]
-                image_path = os.path.realpath(_file_) + "\\DB\\" + image_path
-                resized = Image.open(image_path).resize((200, 200),Image.ANTIALIAS)
+                resized = Image.open("DB/"+image_path).resize((200, 200),Image.ANTIALIAS)
                 imgs.append(ImageTk.PhotoImage(resized))
                 img = imgs[row_n+column_n]
                 panel_image = tkinter.Label(self.root, image = img, height=200, width=200)
